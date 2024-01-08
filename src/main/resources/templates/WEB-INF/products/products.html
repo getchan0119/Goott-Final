@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html layout:decorate="~{/include/layout}"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" lang="ko">
+<html layout:decorate="~{include/layout}"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" lang="ko">
 
 <body id="page-top" layout:fragment="content"><!-- Navigation-->
 
@@ -22,7 +22,7 @@
                         <td th:text="${product.explanation}"></td>
                         <td th:text="${product.price}"></td>
                         <td>
-                            <a th:href="@{|/products_buy.html/${product.id}|}">제품 구매하기</a>
+                            <a th:href="@{|/products/${product.id}|}">제품 구매하기</a>
                         </td>
                     </tr>
                 </tbody>
