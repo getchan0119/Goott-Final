@@ -17,6 +17,9 @@ public class Products {
     @Column(columnDefinition = "TEXT")
     private String explanation; //상품 설명
 
+    @Column(columnDefinition = "TEXT")
+    private String image; // 상품 이미지 URL
+
     private Integer price; // 가격
 
     private Integer Status; // 0 : 판매중, 1 : 판매완료, 추후 옵션 추가 가능성 있음
