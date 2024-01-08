@@ -2,7 +2,6 @@ package com.example.final_project.products.service;
 
 import com.example.final_project.products.entity.Products;
 import com.example.final_project.products.repository.ProductsRepository;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
