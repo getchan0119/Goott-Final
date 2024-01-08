@@ -41,6 +41,7 @@ public class MemberController {
         return "signin";
     }
 
+    // 이메일 중복 검사
     @GetMapping("/check-duplicate")
     public ResponseEntity<Map<String, Boolean>> checkDuplicateEmail(@RequestParam String email) {
         boolean isDuplicate = memberService.isEmailDuplicate(email);
