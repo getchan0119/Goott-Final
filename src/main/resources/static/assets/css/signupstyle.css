@@ -91,7 +91,7 @@ h1 {
   position: absolute;
   place-content: center;
   width: calc(100% - 40px);
-  background-image: url(../assets/img/배경1.png);
+  background-image: url(../images/img/배경1.png);
   background-size: cover;
 }
 @media (max-width: 767px) {
