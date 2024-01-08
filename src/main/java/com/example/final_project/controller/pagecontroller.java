@@ -11,15 +11,9 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
-
 public class pagecontroller {
 
   private final ProductsService productsService; // 제품 서비스
-
-  @RequestMapping(value = "/")
-  public String index() {
-    return "index";
-  }
 
   @RequestMapping("/membersearch")
   public String membersearch() {
