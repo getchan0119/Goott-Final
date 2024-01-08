@@ -1,8 +1,6 @@
 package com.example.final_project.Products;
 
-import com.example.final_project.products.entity.Products;
 import com.example.final_project.products.repository.ProductsRepository;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
