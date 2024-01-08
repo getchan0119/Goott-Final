@@ -22,7 +22,7 @@
                         <td th:text="${product.explanation}"></td>
                         <td th:text="${product.price}"></td>
                         <td>
-                            <button th:href="@{|/products_buy.html/${product.id}|}">제품 구매하기</button>
+                            <a th:href="@{|/products_buy.html/${product.id}|}">제품 구매하기</a>
                         </td>
                     </tr>
                 </tbody>
