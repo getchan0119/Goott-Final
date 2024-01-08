@@ -154,22 +154,19 @@
       <div class="form">
 
         <div id="signupForm" style="margin-top: -10px; margin-left: 10px;  z-index: 4">
-          <label for="loginId">아이디</label>
+          <label for="email">메일주소</label>
           <div>
-          <div id="idCheckResult">
-            <input type="text" id="loginId" class="form-control my-input" placeholder="Username" name="loginId"  style="" required>
-            <button type="button" id="checkDuplicateId" class="btn btn-sm w-100 btn-outline-secondary " style="margin-top: 1px; color: #FFFFFF;">중복체크</button>
+          <div id="emailCheckResult">
+            <input type="email" id="email" class="form-control my-input" placeholder="email" name="email"  style="" required>
+            <button type="button" id="checkDuplicateEmail" class="btn btn-sm w-100 btn-outline-secondary " style="margin-top: 1px; color: #FFFFFF;">중복체크</button>
              </div>
-            <label for="mbPw">비밀번호</label>
-            <input type="password" id="mbPw" class="form-control my-input" placeholder="password" name="mbPw" required>
-            <label for="email">메일주소</label>
-            <input type="email" id="email" class="form-control my-input" placeholder="e-mail" name="email" required>
+            <label for="password1">비밀번호</label>
+            <input type="password" id="password1" class="form-control my-input" placeholder="password" name="password1" required>
+            <label for="password2">비밀번호 재확인</label>
+            <input type="password" id="password2" class="form-control my-input" placeholder="password" name="password2" required>
             <label for="name">이름</label>
-            <input type="text" id="name" class="form-control my-input" placeholder="name" name="mbName" required>
+            <input type="text" id="name" class="form-control my-input" placeholder="name" name="name" required>
             <div  id="submit" type="button" class="btn btn-outline-secondary w-75" style="color: #FFFFFF; margin-left: 14%; margin-top: 25%;" > 회원가입
-
-
-
             </div>
 
           </div>
@@ -191,33 +188,37 @@
   }
       $('#submit').click(function (){
         console.log('signupForm start')
-        var loginId = $('#loginId').val();
-        var mbPw = $('#mbPw').val();
         var email = $('#email').val();
-        var mbName = $('#name').val();
+        var password1 = $('#password1').val();
+        var password2= $('#password2').val();
+        var name = $('#name').val();
 
-              if (!/^[A-Za-z0-9]{6,12}$/.test(loginId)) {
-                alert("아이디는 6-12자의 알파벳과 숫자여야 합니다.");
-                return false;
-              }
-              if (!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(mbPw)) {
-                alert("비밀번호는 최소 8자, 하나 이상의 숫자와 특수 문자를 포함해야 합니다.");
-                return false;
-              }
-              if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email)) {
-                alert("유효한 이메일 주소를 입력해주세요.");
-                return false;
-              }
-              if (!/^[A-Za-z가-힣]{2,30}$/.test(mbName)) {
-                alert("이름은 2-30자의 문자여야 합니다.");
-                return false;
-              }
+        if (!/^[A-Za-z0-9]+@[A-Za-z0-9]+\.[A-Za-z]{2,}$/.test(email)) {
+          alert("올바른 이메일 주소를 입력하세요.");
+          return false;
+        }
+        if (!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(password1)) {
+          alert("비밀번호는 최소 8자, 하나 이상의 숫자와 특수 문자를 포함해야 합니다.");
+          return false;
+        }
+        if (!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(password2)) {
+          alert("비밀번호는 최소 8자, 하나 이상의 숫자와 특수 문자를 포함해야 합니다.");
+          return false;
+        }
+        if (password1 !== password2) {
+          alert("비밀번호가 일치하지 않습니다.");
+          return false;
+        }
+        if (!/^[A-Za-z가-힣]{2,30}$/.test(name)) {
+          alert("이름은 2-30자의 문자여야 합니다.");
+          return false;
+        }
 
         var formData = {
-          loginId: loginId,
-          mbPw: mbPw,
           email: email,
-          mbName: mbName
+          password1: password1,
+          password2: password2,
+          name: name
         };
 
         $.ajax({
@@ -225,11 +226,11 @@
           type: 'POST',
           contentType: 'application/json',
           data: JSON.stringify(formData),
-          success: function(data) {
+          success: function (data) {
             alert(data.message || "회원가입이 완료되었습니다. 로그인 해주세요.");
-            window.location.href = '/signinpage';
+            window.location.href = '/signin';
           },
-          error: function(error) {
+          error: function (error) {
             console.error('Error:', error);
             var errorMsg = error.responseJSON?.message || error.responseText;
             alert("회원가입에 실패하였습니다. " + errorMsg);
@@ -237,27 +238,29 @@
         });
       })
 
-      $('#checkDuplicateId').on('click', function() {
-        var loginId = $('#loginId').val();
-        if(loginId) {
-          $.ajax({
-            url: '/check-duplicate?loginId=' + encodeURIComponent(loginId),
-            type: 'GET',
-            success: function(data) {
-                if(data.isDuplicate) {
-                    alert("중복된 아이디입니다.");
-                } else {
-                    alert("사용 가능한 아이디입니다.");
-                }
-            },
-            error: function(error) {
-                console.error('Error:', error);
+    $('#checkDuplicateEmail').on('click', function() {
+      var email = $('#email').val();
+      if (email) {
+        $.ajax({
+          url: '/check-duplicate?email=' + encodeURIComponent(email),
+          type: 'GET',
+          success: function(data) {
+            if (data.isDuplicate) {
+              alert("중복된 이메일입니다.");
+            } else {
+              alert("사용 가능한 이메일입니다.");
             }
-          });
-        } else {
-          alert("아이디를 입력해주세요.");
-        }
+          },
+          error: function(xhr, status, error) {
+            // 서버로부터 에러 응답을 받았을 때의 처리
+            var errorMessage = xhr.responseJSON.errorMessage;
+            alert("에러 발생: " + errorMessage);
+          }
         });
+      } else {
+        alert("이메일을 입력해주세요.");
+      }
+    });
   </script>
 
 
@@ -279,7 +282,7 @@
 
   <script>
     $(document).ready(function () {
-      $('#checkDuplicateId').hover(function () {
+      $('#checkDuplicateEmail').hover(function () {
 
         $('#lock').css('left','90%');
       },

@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 import static com.example.final_project.login.Exception.MemberErrorCode.Duplicate_Email;
 import static com.example.final_project.login.Exception.MemberErrorCode.Password_Incorrect;
 
@@ -37,6 +39,11 @@ public class MemberService {
                 .email(request.getEmail())
                 .memberType("user")
                 .build();
+
+        // 비밀번호 일치 여부 확인
+        if (!request.getPassword1().equals(request.getPassword2())) {
+            throw new MemberException(Password_Incorrect); // 비밀번호 불일치
+        }
         // 레포지토리를 통해 데이터베이스에 저장
         Member savedMember = memberRepository.save(member);
 
@@ -50,10 +57,13 @@ public class MemberService {
                 .ifPresent((member -> {
                     throw new MemberException(Duplicate_Email); //이메일 중복
                 }));
-        // 비밀번호 일치 여부 확인
-        if (!request.getPassword1().equals(request.getPassword2())) {
-            throw new MemberException(Password_Incorrect); // 비밀번호 불일치
-        }
 
+
+    }
+
+    // 화면에서 이메일 중복체크 메서드
+    public boolean isEmailDuplicate(String email) {
+        Optional<Member> existingMember = memberRepository.findByEmail(email);
+        return existingMember.isPresent();
     }
 }
