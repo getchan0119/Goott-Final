@@ -232,7 +232,7 @@
                     <tbody>
                     <tr th:each="product : ${productsList}">
                         <td th:text="${product.name}"></td>
-                        <td><img th:src="|/assets/images/upload/${product.file_name}|"></td>
+                        <td><img th:src="|/assets/images/upload/${product.file_name}|" alt=""></td>
                         <td th:text="${product.price}"></td>
                         <td>
                             <a th:href="@{|/products/${product.id}|}" th:text="${product.name}"> 상세보기</a>
