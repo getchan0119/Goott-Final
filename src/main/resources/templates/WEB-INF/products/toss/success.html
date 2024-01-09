@@ -2,9 +2,8 @@
 <html lang="ko" layout:decorate="~{include/layout}"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
 <body layout:fragment="content"><!-- Navigation-->
-
+<link href="/assets/css/stylesBuy.css" rel="stylesheet" />
 <th:block th:if="${#strings.equals(isSuccess, 'true')}">
-    <h1>결제 성공</h1>
 <!--    <p>결과데이터 : <span th:text="${responseStr}"></span></p>-->
 <!--    <p>orderName : <span th:text="${orderName}"></span></p>-->
 <!--    <p>method : <span th:text="${method}"></span></p>-->
@@ -20,11 +19,46 @@
 <!--    <tr th:if="${#strings.equals(method, '휴대폰')}">customerMobilePhone-->
 <!--        <td th:text="${customerMobilePhone}"></td>-->
 <!--    </tr>-->
+    <!-- Product section-->
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
+                <div class="col-md-6">
+                    <h1 class="display-5 fw-bolder">결제 성공!</h1>
+                    <p class="lead">
+                        Goott 럭셔리 숍을 이용해주셔서 감사합니다.
+
+                        빠른 시일내로 배송 및 연락드리겠습니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </th:block>
 <th:block th:if="${#strings.equals(isSuccess, 'false')}">
-    <h1>결제 실패</h1>
-    <p>에러메시지 : <span th:text="${message}"></span></p>
-    <p>에러코드 : <span th:text="${code}"></span></p>
+    <!-- Product section-->
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
+                <div class="col-md-6">
+                    <h1 class="display-5 fw-bolder">결제 실패</h1>
+                    <div class="fs-5 mb-5">
+                        에러 : <span th:text="${message}"></span>
+                    </div>
+                    <p class="lead">
+                        에러코드 : <span th:text="${code}"></span>
+                        <br>
+                        <br>
+                        에러에 대한 문의는 <b>카카오톡 채팅 문의</b>를 남겨주세요.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 </th:block>
+<script src="/assets/js/scriptsBuy.js"></script>
 </body>
 </html>
