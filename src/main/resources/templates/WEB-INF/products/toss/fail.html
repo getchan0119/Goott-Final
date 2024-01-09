@@ -1,14 +1,27 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<meta charset="UTF-8">
-<head>
-    <title>결제 실패</title>
-    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-</head>
-<body>
-<h1>결제 실패</h1>
-<p>에러메시지 : <span th:text="${message}"></span></p>
-<p>에러코드 : <span th:text="${code}"></span></p>
+<html lang="ko" layout:decorate="~{include/layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+<body layout:fragment="content"><!-- Navigation-->
+<link href="/assets/css/stylesBuy.css" rel="stylesheet" />
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
+            <div class="col-md-6">
+                <h1 class="display-5 fw-bolder">결제 실패</h1>
+                <div class="fs-5 mb-5">
+                    에러 : <span th:text="${message}"></span>
+                </div>
+                <p class="lead">
+                    에러코드 : <span th:text="${code}"></span>
+                    <br>
+                    <br>
+                    에러에 대한 문의는 <b>카카오톡 채팅 문의</b>를 남겨주세요.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="/assets/js/scriptsBuy.js"></script>
 </body>
 </html>
