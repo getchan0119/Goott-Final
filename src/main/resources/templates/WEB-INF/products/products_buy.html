@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html layout:decorate="~{/include/layout}"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" lang="ko">
+
+<body id="page-top" layout:fragment="content"><!-- Navigation-->
+
+<!-- Masthead-->
+
+<div class="container px-4 px-lg-5">
+  <div class="row gx-4 gx-lg-5 align-items-center justify-content-center text-center">
+    <h2>제품 리스트</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>제품명</th>
+        <th>상세정보</th>
+        <th>가격</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td th:text="${products_buy.name}"></td>
+        <td th:text="${products_buy.explanation}"></td>
+        <td th:text="${products_buy.price}"></td>
+        <td><button class="button is-link" onclick="pay('카드',jsons.card);">일반결제창</button></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!--토스 페이먼츠 스크립트-->
+<script th:inline="javascript">
+  let name = [[${products_buy.name}]]; //제품 id에 맞는 이름
+  let amount = [[${products_buy.price}]]; //제품 id에 맞는 가격
+
+  let tossPayments = TossPayments("test_ck_OEP59LybZ8Bdv6A1JxkV6GYo7pRe");
+
+  function pay(method, requestJson) {
+    console.log(requestJson);
+    tossPayments.requestPayment(method, requestJson)
+            .catch(function (error) {
+
+              if (error.code === "USER_CANCEL") {
+                alert('유저가 취소했습니다.');
+              } else {
+                alert(error.message);
+              }
+
+            });
+  }
+
+  let path = "/";
+  let successUrl = window.location.origin + path + "success";
+  let failUrl = window.location.origin + path + "fail";
+  let callbackUrl = window.location.origin + path + "va_callback";
+  let orderId = new Date().getTime();
+
+  let jsons = {
+    "card": {
+      "amount": amount,
+      "orderId": "sample-" + orderId,
+      "orderName": name,
+      "successUrl": successUrl,
+      "failUrl": failUrl,
+      "cardCompany": null,
+      "cardInstallmentPlan": null,
+      "maxCardInstallmentPlan": null,
+      "useCardPoint": false,
+      "customerName": "TEST",
+      "customerEmail": null,
+      "customerMobilePhone": null,
+      "taxFreeAmount": null,
+      "useInternationalCardOnly": false,
+      "flowMode": "DEFAULT",
+      "discountCode": null,
+      "appScheme": null
+    }
+  }
+</script>
+</body>
+</html>

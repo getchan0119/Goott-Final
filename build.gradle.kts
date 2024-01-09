@@ -27,7 +27,11 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.session:spring-session-core")
+
+    implementation("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect") //layout 연동
+
     implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")
+
     compileOnly("org.projectlombok:lombok")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     runtimeOnly("com.mysql:mysql-connector-j")
@@ -35,6 +39,11 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
     implementation ("org.springframework.boot:spring-boot-starter-validation")
+
+    //토스 페이먼츠 연동용
+    // https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple
+    implementation("com.googlecode.json-simple:json-simple:1.1")
+
 }
 
 tasks.withType<Test> {
