@@ -6,10 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -37,9 +34,14 @@ public class ProductsController {
 
     @PostMapping("/products/create")
     public String create(
+            Model model,
             @RequestParam(value="name") String name, @RequestParam(value="explanation") String explanation,
             @RequestParam(value = "price") Integer price, @RequestParam(value = "image") MultipartFile image) throws IOException {
         this.productsService.saveProducts(name, explanation, price, image);
-        return "/products";
+
+        //리스트 출력용
+        List<Products> productsList = this.productsService.getlist();
+        model.addAttribute("productsList", productsList);
+        return "/products/products";
     }
 }
