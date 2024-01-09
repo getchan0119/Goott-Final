@@ -1,34 +1,38 @@
 <!DOCTYPE html>
-<html layout:decorate="~{include/layout}"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" lang="ko">
-
-<body id="page-top" layout:fragment="content"><!-- Navigation-->
+<html lang="ko" layout:decorate="~{include/layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+<body layout:fragment="content"><!-- Navigation-->
 
 <!-- Masthead-->
 
-    <div class="container px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 align-items-center justify-content-center text-center">
-            <h2>제품 리스트</h2>
-            <table>
-                <thead>
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 align-items-center justify-content-center text-center">
+        <h2>제품 리스트</h2>
+        <section class="section ">
+                <table class="container">
+                    <thead>
                     <tr>
                         <th>제품명</th>
                         <th>상세정보</th>
                         <th>가격</th>
                     </tr>
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody>
                     <tr th:each="product : ${productsList}">
                         <td th:text="${product.name}"></td>
                         <td th:text="${product.explanation}"></td>
                         <td th:text="${product.price}"></td>
                         <td>
-                            <a th:href="@{|/products/${product.id}|}">제품 구매하기</a>
+                            <button class="button is-link" onclick="pay('카드',jsons.card);">일반결제창</button>
                         </td>
                     </tr>
-                </tbody>
-            </table>
-        </div>
+                    </tbody>
+                </table>
+        </section>
     </div>
 
+</div>
 </body>
+
+
 </html>

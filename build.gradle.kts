@@ -39,6 +39,11 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
     implementation ("org.springframework.boot:spring-boot-starter-validation")
+
+    //토스 페이먼츠 연동용
+    // https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple
+    implementation("com.googlecode.json-simple:json-simple:1.1")
+
 }
 
 tasks.withType<Test> {

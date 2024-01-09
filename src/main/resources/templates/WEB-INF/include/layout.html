@@ -22,8 +22,10 @@
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR:wght@500&display=swap"
           rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://js.tosspayments.com/v1"></script>
 </head>
-<body id="page-top" style="padding-top: 75px">
+<body style="padding-top: 75px">
 
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav" style="background-color: #FFFFFF;">
@@ -63,33 +65,6 @@
         </div>
     </div>
 </nav>
-<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">로그인</h1>
-                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <label class="col-form-label" for="recipient-name">Recipient:</label>
-                        <input class="form-control" id="recipient-name" type="text">
-                    </div>
-                    <div class="mb-3">
-                        <label class="col-form-label" for="message-text">Message:</label>
-                        <textarea class="form-control" id="message-text"></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" type="button">Send message</button>
-                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 
 
@@ -165,9 +140,124 @@
         src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js">
 
 </script>
+<!--토스 페이먼츠 스크립트-->
 <script>
+    let amount = 50000;
+
+    let tossPayments = TossPayments("test_ck_OEP59LybZ8Bdv6A1JxkV6GYo7pRe");
+
+    function pay(method, requestJson) {
+        console.log(requestJson);
+        tossPayments.requestPayment(method, requestJson)
+            .catch(function (error) {
+
+                if (error.code === "USER_CANCEL") {
+                    alert('유저가 취소했습니다.');
+                } else {
+                    alert(error.message);
+                }
+
+            });
+    }
+
+    let path = "/";
+    let successUrl = window.location.origin + path + "success";
+    let failUrl = window.location.origin + path + "fail";
+    let callbackUrl = window.location.origin + path + "va_callback";
+    let orderId = new Date().getTime();
+
+    let jsons = {
+        "card": {
+            "amount": amount,
+            "orderId": "sample-" + orderId,
+            "orderName": "Goott luxury",
+            "successUrl": successUrl,
+            "failUrl": failUrl,
+            "cardCompany": null,
+            "cardInstallmentPlan": null,
+            "maxCardInstallmentPlan": null,
+            "useCardPoint": false,
+            "customerName": "박토스",
+            "customerEmail": null,
+            "customerMobilePhone": null,
+            "taxFreeAmount": null,
+            "useInternationalCardOnly": false,
+            "flowMode": "DEFAULT",
+            "discountCode": null,
+            "appScheme": null
+        },
+        "vaccount": { //가상계좌 결제창
+
+            "amount": amount,
+            "orderId": "sample-" + orderId,
+            "orderName": "Goott luxury",
+            "successUrl": successUrl,
+            "failUrl": failUrl,
+            "validHours": 72,
+            "virtualAccountCallbackUrl": callbackUrl,
+            "customerName": "박토스",
+            "customerEmail": null,
+            "customerMobilePhone": null,
+            "taxFreeAmount": null,
+            "cashReceipt": {
+                "type": "소득공제"
+            },
+            "useEscrow": false
+
+        },
+        "transfer": { //계좌이체 결제창
+
+            "amount": amount,
+            "orderId": "sample-" + orderId,
+            "orderName": "Goott luxury",
+            "successUrl": successUrl,
+            "failUrl": failUrl,
+            "customerName": "박토스",
+            "customerEmail": null,
+            "customerMobilePhone": null,
+            "taxFreeAmount": null,
+            "cashReceipt": {
+                "type": "소득공제"
+            },
+            "useEscrow": false
+
+        },
+        "phone": { // 휴대폰 결제창
+
+            "amount": amount,
+            "orderId": "sample-" + orderId,
+            "orderName": "Goott luxury",
+            "successUrl": successUrl,
+            "failUrl": failUrl,
+            "mobileCarrier": null
+
+        },
+
+        "certificate": { //상품권 결제창
+            "amount": amount,
+            "orderId": "sample-" + orderId,
+            "orderName": "Goott luxury",
+            "successUrl": successUrl,
+            "failUrl": failUrl
+        },
+
+        "bookcert": { //도서문화상품권 결제창
+            "amount": amount,
+            "orderId": "sample-" + orderId,
+            "orderName": "Goott luxury",
+            "successUrl": successUrl,
+            "failUrl": failUrl
+        },
+        "gamecert": { // 게임문화상품권 결제창
+            "amount": amount,
+            "orderId": "sample-" + orderId,
+            "orderName": "Goott luxury",
+            "successUrl": successUrl,
+            "failUrl": failUrl
+        }
 
 
+    }
 </script>
 <script>
     Kakao.init('959f37c747526970e429e77e5e94a531'); // 사용하려는 앱의 JavaScript 키 입력
@@ -182,29 +272,12 @@
 
 </script>
 
-<script>
-
-
-
-</script>
-
-
-
-</script>
-
-
-</script>
-
-
-</script>
-
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- SimpleLightbox plugin JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
 <!-- Core theme JS-->
-<script src="/js/scripts.js"></script>
-
-<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+<script  type="text/javascript" th:src="@{/assets/js/scripts.js}"></script>
+<!-- 기능 모름 & 토스페이먼츠 충돌남 -->
+<!--<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>-->
 </body>
 </html>
