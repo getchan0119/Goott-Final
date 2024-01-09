@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html layout:decorate="~{/include/layout}"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" lang="ko">
-
-<body id="page-top" layout:fragment="content"><!-- Navigation-->
-
+<html lang="ko" layout:decorate="~{include/layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+<body layout:fragment="content">
+<!-- Navigation-->
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://js.tosspayments.com/v1"></script>
 <!-- Masthead-->
 
 <div class="container px-4 px-lg-5">
@@ -21,7 +23,7 @@
         <td th:text="${products_buy.name}"></td>
         <td th:text="${products_buy.explanation}"></td>
         <td th:text="${products_buy.price}"></td>
-        <td><button class="button is-link" onclick="pay('카드',jsons.card);">일반결제창</button></td>
+        <td><button class="button is-link" onclick="pay('카드', jsons.card);">일반결제창</button></td>
       </tr>
       </tbody>
     </table>
