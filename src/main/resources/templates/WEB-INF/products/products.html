@@ -13,14 +13,15 @@
                     <thead>
                     <tr>
                         <th>제품명</th>
-                        <th>상세정보</th>
+                        <th>이미지</th>
                         <th>가격</th>
+                        <th>구매하기</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="product : ${productsList}">
                         <td th:text="${product.name}"></td>
-                        <td th:text="${product.explanation}"></td>
+                        <td><img th:src="|/assets/images/upload/${product.file_name}|"></td>
                         <td th:text="${product.price}"></td>
                         <td>
                             <a th:href="@{|/products/${product.id}|}" th:text="${product.name}"> 상세보기</a>
