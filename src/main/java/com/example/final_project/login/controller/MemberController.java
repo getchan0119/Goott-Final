@@ -3,6 +3,7 @@ package com.example.final_project.login.controller;
 import com.example.final_project.login.Exception.MemberException;
 import com.example.final_project.login.dto.MemberCreateDto;
 import com.example.final_project.login.dto.MemberErrorResponse;
+import com.example.final_project.login.dto.SignInRequest;
 import com.example.final_project.login.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -39,6 +40,13 @@ public class MemberController {
     @GetMapping ("/signin")
     public String signinForm() {
         return "signin";
+    }
+
+    // 로그인 데이터 넣기
+    @PostMapping("/signin")
+    public String signin(@RequestBody SignInRequest request)  {
+        memberService.loadUserByUsername(String.valueOf(request));
+        return "";
     }
 
     // 이메일 중복 검사

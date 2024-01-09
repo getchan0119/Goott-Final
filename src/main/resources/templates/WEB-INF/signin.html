@@ -92,12 +92,12 @@
                         alert("로그인에 성공하였습니다. " + result.body.message);
                         window.location.href = '/';
                       } else {
-                        throw new Error("로그인에 실패하였습니다: " + result.body.message);
+                        throw new Error(result.body.message);
                       }
                     })
                     .catch((error) => {
                       console.error('Error:', error);
-                      alert(error.message);
+                      alert("로그인에 실패하였습니다. 이메일 또는 비밀번호를 다시 확인해주세요.");
                     });
           });
         </script>
