@@ -11278,3 +11278,64 @@ img {
 #sco1:hover img {
   transform: scale(1.2);
 }
+
+#img_1 {
+
+background-image: url(../images/img/long.jpg);
+
+background-size: 400px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#img_2 {
+
+  background-image: url(../images/img/image1.jpeg);
+
+  background-size: 400px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#img_3 {
+
+  background-image: url(../images/img/middle.jpg);
+
+  background-size: 400px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#card-body {
+  height: 557px;
+}
+
+#card-title {
+
+  height: 140px;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+}
+
+#card-text1 {
+
+  font-family: "Franklin Gothic Demi";
+  display: flex;
+  text-align: left;
+  font-weight: bolder;
+  color: #171a1d;
+
+
+}
+
+#card-text2 {
+  font-size: large;
+  font-family: "Book Antiqua";
+  display: flex;
+  text-align: left;
+  color: #062c33;
+}
+
