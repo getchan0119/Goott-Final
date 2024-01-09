@@ -252,6 +252,7 @@
             }
           },
           error: function(xhr, status, error) {
+            console.error('Ajax 요청 실패:', xhr, status, error);
             // 서버로부터 에러 응답을 받았을 때의 처리
             var errorMessage = xhr.responseJSON.errorMessage;
             alert("에러 발생: " + errorMessage);
