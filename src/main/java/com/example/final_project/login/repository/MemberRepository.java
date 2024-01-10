@@ -11,4 +11,5 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     // 이메일 중복체크를 위함
     Optional<Member> findByEmail(String email);
+
 }
