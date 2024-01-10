@@ -4,10 +4,15 @@ import com.example.final_project.products.entity.Products;
 import com.example.final_project.products.repository.ProductsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -24,8 +29,11 @@ public class ProductsService {
     private final ProductsRepository productsRepository;
 
     //전체 위치 표시 (페이징 처리시 미사용 가능성 높음)
-    public List<Products> getlist() {
-        return this.productsRepository.findAll();
+    public Page<Products> getlist(int page) {
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.asc("id"));
+        Pageable pageable = PageRequest.of(page, 8 , Sort.by(sorts)); //페이지 8개 단위로끊음
+        return this.productsRepository.findAll(pageable);
     }
 
     // 구매 버튼 누를 시 이동용

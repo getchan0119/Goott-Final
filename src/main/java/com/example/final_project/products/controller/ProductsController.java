@@ -37,9 +37,6 @@ public class ProductsController {
             @RequestParam(value = "price") Integer price, @RequestParam(value = "image") MultipartFile image) throws IOException {
         this.productsService.saveProducts(name, explanation, price, image);
 
-        //리스트 출력용
-        List<Products> productsList = this.productsService.getlist();
-        model.addAttribute("productsList", productsList);
-        return "/products/products";
+        return "redirect:/products";
     }
 }
