@@ -84,4 +84,43 @@ public class ProductsService {
 
         return savedFile.getId();
     }
+
+    public Long modify(Long id, String name, String explanation, Integer price, MultipartFile files) throws IOException {
+        // 원래 파일 이름 추출
+        String origName = files.getOriginalFilename();
+
+        // 파일 이름으로 쓸 uuid 생성
+        String uuid = UUID.randomUUID().toString();
+
+        // 확장자 추출(ex : .png)
+        String extension = origName.substring(origName.lastIndexOf("."));
+
+        // uuid와 확장자 결합
+        String savedName = uuid + extension;
+
+        // 파일을 불러올 때 사용할 파일 경로
+        String savedPath = fileDir + savedName;
+
+        // 파일 엔티티 생성
+        Products file = Products.builder()
+                .id(id)
+                .name(name)
+                .explanation(explanation)
+                .price(price)
+                .image(origName)
+                .file_name(savedName)
+                .file_path(savedPath)
+                .build();
+
+        // 실제로 로컬에 uuid를 파일명으로 저장
+        files.transferTo(new File(savedPath));
+
+        // 데이터베이스에 파일 정보 저장
+        Products savedFile = productsRepository.save(file);
+        return savedFile.getId();
+    }
+
+    public void delete(Products products) {
+        this.productsRepository.delete(products);
+    }
 }
