@@ -73,15 +73,6 @@ h1 {
 }
 
 
-
-
-
-
-
-
-
-
-
 .page {
 
   border-radius: 32px;
@@ -93,6 +84,9 @@ h1 {
   width: calc(100% - 40px);
   background-image: url(../images/img/배경1.png);
   background-size: cover;
+
+
+
 }
 @media (max-width: 767px) {
   .page {
@@ -200,8 +194,8 @@ input {
   outline: none !important;
   width: 100%;
 }
-input::-moz-focus-inner { 
-  border: 0; 
+input::-moz-focus-inner {
+  border: 0;
 }
 #submit {
   color: #707075;

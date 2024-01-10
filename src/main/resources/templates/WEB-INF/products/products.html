@@ -2,36 +2,96 @@
 <html lang="ko" layout:decorate="~{include/layout}"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
 <body layout:fragment="content"><!-- Navigation-->
-
-<!-- Masthead-->
-
-<div class="container px-4 px-lg-5">
-    <div class="row gx-4 gx-lg-5 align-items-center justify-content-center text-center">
-        <h2>제품 리스트</h2>
-        <section class="section ">
-                <table class="container">
-                    <thead>
-                    <tr>
-                        <th>제품명</th>
-                        <th>상세정보</th>
-                        <th>가격</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="product : ${productsList}">
-                        <td th:text="${product.name}"></td>
-                        <td th:text="${product.explanation}"></td>
-                        <td th:text="${product.price}"></td>
-                        <td>
-                            <a th:href="@{|/products/${product.id}|}" th:text="${product.name}"> 상세보기</a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-        </section>
+<link href="/assets/css/stylesProducts.css" rel="stylesheet" />
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">제품 리스트</h1>
+            <p class="lead fw-normal text-white-50 mb-0">구트 럭셔리의 상품 목록</p>
+        </div>
     </div>
+</header>
+<!-- Section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div class="col mb-5" th:each="product, loop : ${productsList}">
+                <div class="card h-100" th:if="${product.Status != 1}">
+                    <!-- Product image-->
+<!--                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
+                    <img class="card-img-top overflow-hidden" th:src="|/assets/images/upload/${product.file_name}|" alt="" width="450" height="auto"/>
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder" th:text="${product.name}"></h5>
+                            <!-- Product price-->
+                            <p th:text="|${product.price}원|"></p>
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" th:href="@{|/products/${product.id}|}">상세보기</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 페이징처리 시작 -->
+        <div th:if="${!productsList.isEmpty()}">
+            <ul class="pagination justify-content-center">
+                <li class="page-item" th:classappend="${!productsList.hasPrevious} ? 'disabled'">
+                    <a class="page-link"
+                       th:href="@{|?page=${productsList.number} - 1|}">
+                        <span>이전</span>
+                    </a>
+                </li>
+                <li th:each="page: ${#numbers.sequence(0, productsList.totalPages - 1)}"
+                    th:if="${page >= productsList.number - 5 and page <= productsList.number + 5}"
+                    th:classappend="${page == productsList.number} ? 'active'"
+                    class="page-item">
+                    <a th:text="${page + 1}" class="page-link" th:href="@{|?page=${page}|}"></a>
+                </li>
+                <li class="page-item" th:classappend="${!productsList.hasNext} ? 'disabled'">
+                    <a class="page-link" th:href="@{|?page=${productsList.number + 1}|}">
+                        <span>다음</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- 페이징처리 끝 -->
+    </div>
+</section>
 
-</div>
+<!--<div class="container px-4 px-lg-5">-->
+<!--    <div class="row gx-4 gx-lg-5 align-items-center justify-content-center text-center">-->
+<!--        <h2>제품 리스트</h2>-->
+<!--        <section class="section ">-->
+<!--                <table class="container">-->
+<!--                    <thead>-->
+<!--                    <tr>-->
+<!--                        <th>제품명</th>-->
+<!--                        <th>이미지</th>-->
+<!--                        <th>가격</th>-->
+<!--                        <th>구매하기</th>-->
+<!--                    </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody>-->
+<!--                    <tr th:each="product : ${productsList}">-->
+<!--                        <td th:text="${product.name}"></td>-->
+<!--                        <td><img th:src="|/assets/images/upload/${product.file_name}|" alt=""></td>-->
+<!--                        <td th:text="${product.price}"></td>-->
+<!--                        <td>-->
+<!--                            <a th:href="@{|/products/${product.id}|}" th:text="${product.name}"> 상세보기</a>-->
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                    </tbody>-->
+<!--                </table>-->
+<!--        </section>-->
+<!--    </div>-->
+
+<!--</div>-->
+<script src="/assets/js/scriptsProducts.js"></script>
 </body>
 
 

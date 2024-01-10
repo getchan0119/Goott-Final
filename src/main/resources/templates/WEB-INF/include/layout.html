@@ -25,7 +25,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://js.tosspayments.com/v1"></script>
 </head>
-<body style="padding-top: 75px">
+<body id="page-top" style="padding-top: 75px">
 
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav" style="background-color: #FFFFFF;">
@@ -52,22 +52,16 @@
             <ul class="navbar-nav ms-auto my-2 my-lg-0">
                 <li class="nav-item"><a class="nav-link" th:href="@{/membersearch}">Member</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/about}">About</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/services}">Services</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/list}">Services</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/products}">Products</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/contact}">Contact</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/signin}">Sign in</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/signup}">Sign up</a></li>
 
-
-
-
             </ul>
         </div>
     </div>
 </nav>
-
-
-
 
 <!--view 페이지 본문-->
 
@@ -76,15 +70,6 @@
 <th:block layout:fragment="content">
     <!-- content 선언 -->
 </th:block>
-
-
-
-
-<!---->
-
-
-
-
 
 
 <div class="container px-4 px-lg-5 mt-5" style="background: #101214; border-radius: 0px 0px 0px 0px; max-width: 100%;">
@@ -98,15 +83,7 @@
 
         <br>
 
-            <tbody>
-
-            </tbody>
-
-
-
-
-
-            <div style="color: #FFFFFF; float: left; text-align: left">
+        <div style="color: #FFFFFF; float: left; text-align: left">
            <ul style="line-height: 25px; font-family: 'Century';font-weight: lighter; ">
                 <ol>Bank INFO : 국민 140-779-7956427 (주)구트 럭셔리</ol>
                <ol>Company : GOOTT Luxury gmbh  | CEO : David Monaca & Reo Richard</ol>
@@ -132,12 +109,13 @@
         </div>
     </div>
 
-
-
-</div>
 <script crossorigin="anonymous"
         integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx"
         src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js">
+
+</script>
+<script>
+
 
 </script>
 <script>
@@ -157,8 +135,8 @@
 <!-- SimpleLightbox plugin JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
 <!-- Core theme JS-->
-<script  type="text/javascript" th:src="@{/assets/js/scripts.js}"></script>
-<!-- 기능 모름 & 토스페이먼츠 충돌남 -->
+<script type="text/javascript" th:src="@{/assets/js/scripts.js}"></script>
+
 <!--<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>-->
 </body>
 </html>
