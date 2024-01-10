@@ -2,6 +2,7 @@ package com.example.final_project.login.service;
 
 import com.example.final_project.login.Exception.MemberException;
 import com.example.final_project.login.dto.MemberCreateDto;
+import com.example.final_project.login.dto.SignIn;
 import com.example.final_project.login.entity.Member;
 import com.example.final_project.login.repository.MemberRepository;
 import com.example.final_project.login.type.UserRole;
@@ -77,18 +78,14 @@ public class MemberService implements UserDetailsService{
 
 
     // 로그인 시 사용할 스프링 시큐리티
-    @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Member member = memberRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
 
-        return new org.springframework.security.core.userdetails.User(
-                member.getEmail(),
-                member.getPassword(),
-                getAuthorities(member.getMemberType())
-        );
+        return new User(member.getEmail(), member.getPassword(), getAuthorities(member.getMemberType()));
     }
 
+    // 권한 설정
     private static List<GrantedAuthority> getAuthorities(String memberType) {
         List<GrantedAuthority> authorities = new ArrayList<>();
         if ("admin".equals(memberType)) {
