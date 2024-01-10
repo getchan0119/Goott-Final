@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body style="background-color: rgba(100, 100, 100, 0.1)">
+
+<div style="margin: 0px auto; margin-left: 350px; margin-right: 350px;background-color: #ffffff;padding: 20px">
 <h2 th:text="${boardDto.title}"></h2>
+    <div style="border-bottom: solid #4d5154 1px"></div>
 <p th:inline="text">작성일 : [[${#temporals.format(boardDto.createdDate, 'yyyy-MM-dd HH:mm')}]]</p>
 
 <p th:text="${boardDto.content}"></p>
 
 <!-- 수정/삭제 -->
-<div>
+<div style="margin: auto; " >
     <a th:href="@{'/post/edit/' + ${boardDto.id}}">
 
-        <button>수정</button>
+        <button class="btn btn-outline-secondary">수정</button>
     </a>
 
-    <form id="delete-form" th:action="@{'/post/' + ${boardDto.id}}" method="post">
+    <form id="delete-form" th:action="@{'/post/' + ${boardDto.id}}" method="post" style="display: inline">
 
         <input type="hidden" name="_method" value="delete"/>
-        <button id="delete-btn">삭제</button>
+        <button id="delete-btn" class="btn btn-outline-secondary">삭제</button>
     </form>
 </div>
 
@@ -29,7 +35,11 @@
     var boardDto = /*[[${boardDto}]]*/ "";
     /*]]>*/
 </script>
-<script th:inline="javascript" th:src="@{/js/board.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+
+    <script th:inline="javascript" th:src="@{/js/board.js}"></script>
+</div>
 </body>
 </html>
 

@@ -47,7 +47,7 @@ public class BoardController {
         boardService.savePost(boardDto);
 
 
-        return "redirect:list";
+        return "redirect:/list";
 
     }
 
@@ -78,7 +78,7 @@ public class BoardController {
     @PostMapping("/post/edit/{no}")
     public String update(BoardDto boardDto){
         boardService.savePost(boardDto);
-        return "redirect:/";
+        return "redirect:/list";
 
     }
 
@@ -90,7 +90,7 @@ public class BoardController {
 //
 
 
-        return "redirect:/";
+        return "redirect:/list";
 
 
     }
@@ -100,7 +100,7 @@ public class BoardController {
         List<BoardDto> boardDtoList = boardService.searchPosts(keyword);
         model.addAttribute("boardList", boardDtoList);
 
-        return "board/list.html";
+        return "board/list";
 
 
     }

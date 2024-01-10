@@ -17,7 +17,7 @@ import java.util.Optional;
 public class BoardService {
 
     private BoardRepository boardRepository;
-    private static final int BLOCK_PAGE_NUM_COUNT = 5;
+    private static final int BLOCK_PAGE_NUM_COUNT = 3;
     private static final int PAGE_POST_COUNT = 5;
 
     public BoardService(BoardRepository boardRepository){

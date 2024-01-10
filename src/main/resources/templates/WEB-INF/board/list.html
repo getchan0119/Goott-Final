@@ -11,7 +11,7 @@
 <!-- header 추가 -->
 
 
-<div id="wrap" style="background-color: rgba(70,70,70,0.2); padding-top: 1%;padding-bottom: 1%;" >
+<div id="wrap" style="background-color: rgba(110,110,110,0.2); padding-top: 10px;padding-bottom: 1%;" >
     <div class="container px-4 px-lg-5" style="max-width: 1200px; height:1200px;margin-left: auto; margin-right: auto; background-color: #FFFFFF">
 
     <br>
@@ -21,15 +21,15 @@
 
         <div class="d-flex justify-content-center w-25 h-25" style="margin-left: auto; margin-right: auto;">
             <input name="keyword" type="text" placeholder="검색어를 입력해주세요" class="form-control">
-            <button class="d-flex btn btn-outline-secondary" style="width: 65px;">검색</button>
+            <button class="d-flex btn btn-outline-secondary w-25" style="width: 65px;">검색</button>
 
         </div>
         <br>
 
     </form>
 
-    <table class="w-75" style="margin-left: auto; margin-right: auto; text-align: center;">
-        <thead>
+    <table class="w-75" style="margin-left: auto; margin-right: auto; text-align: center; ">
+        <thead style="border: solid 1px #0a53be">
         <tr>
 <!--            <th class="one wide">번호</th>-->
             <th class="ten wide">글제목</th>
@@ -40,19 +40,19 @@
 
         <tbody style="text-align: left;"  >
         <!-- CONTENTS !-->
-        <tr th:each="board : ${boardList}">
+        <tr th:each="board : ${boardList}" style="border: #7C869A 1px solid;" >
 <!--            <td>-->
 <!--&lt;!&ndash;                <span th:text="${board.id}"></span>&ndash;&gt;-->
 <!--            </td>-->
-            <td>
-                <a th:href="@{'/post/' + ${board.id}}">
-                    <span th:text="${board.title}"></span>
+            <td style="border: #7C869A 1px solid">
+                <a th:href="@{'/post/' + ${board.id}}" style="font-family: 굴림; font-size: small;color: #1d2124">
+                    &nbsp;&nbsp;<span th:text="${board.title}"></span>
                 </a>
             </td>
-            <td>
+            <td style="text-align: center;font-family:'Colonna MT' ;border: #7C869A 1px solid;">
                 <span th:text="${board.writer}"></span>
             </td>
-            <td>
+            <td style="text-align: center; width: 20%;font-family:'Times New Roman' ;border: #7C869A 1px solid;" >
                 <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
             </td>
         </tr>
