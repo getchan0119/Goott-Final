@@ -46,7 +46,7 @@ public class MemberService implements UserDetailsService{
                 .name(request.getName())
                 .password(encodedPassword)
                 .email(request.getEmail())
-                .memberType("user")
+//                .memberType("user")
                 .build();
 
         // 비밀번호 일치 여부 확인
