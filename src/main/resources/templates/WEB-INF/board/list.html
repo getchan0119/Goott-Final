@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html layout:decorate="~{/include/layout}"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" th:href="@{assets/css/board.css}">
+
+</head>
+<body id="page-top"  layout:fragment="content">
+<!-- header 추가 -->
+
+
+<div id="wrap" style="background-color: rgba(70,70,70,0.2); padding-top: 1%;padding-bottom: 1%;" >
+    <div class="container px-4 px-lg-5" style="max-width: 1200px; height:1200px;margin-left: auto; margin-right: auto; background-color: #FFFFFF">
+
+    <br>
+
+    <form action="/board/search" method="GET" >
+
+
+        <div class="d-flex justify-content-center w-25 h-25" style="margin-left: auto; margin-right: auto;">
+            <input name="keyword" type="text" placeholder="검색어를 입력해주세요" class="form-control">
+            <button class="d-flex btn btn-outline-secondary" style="width: 65px;">검색</button>
+
+        </div>
+        <br>
+
+    </form>
+
+    <table class="w-75" style="margin-left: auto; margin-right: auto; text-align: center;">
+        <thead>
+        <tr>
+<!--            <th class="one wide">번호</th>-->
+            <th class="ten wide">글제목</th>
+            <th class="two wide">작성자</th>
+            <th class="three wide">작성일</th>
+        </tr>
+        </thead>
+
+        <tbody style="text-align: left;"  >
+        <!-- CONTENTS !-->
+        <tr th:each="board : ${boardList}">
+<!--            <td>-->
+<!--&lt;!&ndash;                <span th:text="${board.id}"></span>&ndash;&gt;-->
+<!--            </td>-->
+            <td>
+                <a th:href="@{'/post/' + ${board.id}}">
+                    <span th:text="${board.title}"></span>
+                </a>
+            </td>
+            <td>
+                <span th:text="${board.writer}"></span>
+            </td>
+            <td>
+                <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+<br>
+    <div class="d-flex justify-content-center">
+    <span th:each="pageNum : ${pageList}" th:inline="text">
+        <a th:href="@{'/list?page=' + ${pageNum}}"><button class="btn btn-outline-dark">[[${pageNum}]]</button></a>
+        &nbsp;
+    </span>
+        <br>
+
+    </div>
+        <a th:href="@{/post}"><button type="button" class="btn btn-dark" style="margin-left: 70%; margin-right:-40px;width: 200px;">글쓰기</button></a>
+
+    </div>
+</div>
+
+
+</body>
+</html>
