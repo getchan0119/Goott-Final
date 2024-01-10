@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.Value;
+import org.hibernate.annotations.ColumnDefault;
 
 @Getter
 @Setter
@@ -32,7 +34,7 @@ public class Products {
     private Integer Status; // 0 : 판매중, 1 : 판매완료, 추후 옵션 추가 가능성 있음
 
     @Builder
-    public Products(Long id, String name, String explanation, Integer price, String image, String file_name, String file_path) {
+    public Products(Long id, String name, String explanation, Integer price, String image, String file_name, String file_path, Integer status) {
         this.id = id;
         this.name = name;
         this.explanation = explanation;
@@ -40,7 +42,7 @@ public class Products {
         this.image = image;
         this.file_name = file_name;
         this.file_path = file_path;
-        this.Status = 0;
+        this.Status = status;
     }
 
     public Products() {

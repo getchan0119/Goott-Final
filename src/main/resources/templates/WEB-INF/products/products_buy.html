@@ -94,6 +94,7 @@
 <script th:inline="javascript">
     let name = [[${products_buy.name}]]; //제품 id에 맞는 이름
     let amount = [[${products_buy.price}]]; //제품 id에 맞는 가격
+    let id = [[${products_buy.id}]];
 
     let tossPayments = TossPayments("test_ck_OEP59LybZ8Bdv6A1JxkV6GYo7pRe");
 
@@ -112,10 +113,11 @@
     }
 
     let path = "/";
-    let successUrl = window.location.origin + path + "toss/success";
-    let failUrl = window.location.origin + path + "toss/fail";
+    let successUrl = window.location.origin + path + "toss/success?id=" + id;
+    let failUrl = window.location.origin + path + "toss/fail?id=" + id;
     // let callbackUrl = window.location.origin + path + "va_callback";
     let orderId = new Date().getTime();
+
 
     let jsons = {
         "card": {

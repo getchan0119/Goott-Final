@@ -2,6 +2,7 @@ package com.example.final_project.products.controller;
 
 import com.example.final_project.products.entity.Products;
 import com.example.final_project.products.service.ProductsService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,10 +42,12 @@ public class ProductsController {
         return "redirect:/products";
     }
 
-    @GetMapping("/products/modify/{id}")
-    public String modify() {
-        return "products/products_edit";
-    }
+//    @GetMapping("/products/modify/{id}")
+//    public String modify(Model model, Long id) {
+//        Products products = this.productsService.getProduct(id);
+//        model.addAttribute("productsEdit", products);
+//        return "products/products_edit";
+//    }
 
     @PostMapping("/products/modify/{id}")
     public String modify(

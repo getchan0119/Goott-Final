@@ -36,7 +36,7 @@ public class ProductsService {
         return this.productsRepository.findAll(pageable);
     }
 
-    // 구매 버튼 누를 시 이동용
+    // 구매 버튼 누를 시 이동용 + 삭제 + Status 변경용
     public Products getProduct(Long id) {
         Optional<Products> products = this.productsRepository.findById(id);
         if(products.isPresent()) {
@@ -74,6 +74,7 @@ public class ProductsService {
                 .image(origName)
                 .file_name(savedName)
                 .file_path(savedPath)
+                .status(0)
                 .build();
 
         // 실제로 로컬에 uuid를 파일명으로 저장
@@ -110,6 +111,7 @@ public class ProductsService {
                 .image(origName)
                 .file_name(savedName)
                 .file_path(savedPath)
+                .status(0)
                 .build();
 
         // 실제로 로컬에 uuid를 파일명으로 저장

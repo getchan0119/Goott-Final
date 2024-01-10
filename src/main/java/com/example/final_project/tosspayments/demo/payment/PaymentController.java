@@ -1,5 +1,9 @@
 package com.example.final_project.tosspayments.demo.payment;
 
+import com.example.final_project.products.entity.Products;
+import com.example.final_project.products.repository.ProductsRepository;
+import com.example.final_project.products.service.ProductsService;
+import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Controller;
@@ -16,10 +20,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.Optional;
 
+@RequiredArgsConstructor
 @Controller
 @RequestMapping(value = "/toss")
 public class PaymentController {
+
+    private final ProductsRepository productsRepository;
 
     @RequestMapping(value = {"/", "" }) //다중 맵핑
     public String index() {
@@ -36,7 +44,7 @@ public class PaymentController {
             Model model,
             @RequestParam(value = "orderId") String orderId,
             @RequestParam(value = "amount") Integer amount,
-            @RequestParam(value = "paymentKey") String paymentKey) throws Exception {
+            @RequestParam(value = "paymentKey") String paymentKey, @RequestParam(value = "id") Long id) throws Exception {
 
         String secretKey = "test_ak_ZORzdMaqN3wQd5k6ygr5AkYXQGwy:";
 
@@ -84,6 +92,8 @@ public class PaymentController {
             } else if (((String) jsonObject.get("method")).equals("휴대폰")) {
                 model.addAttribute("customerMobilePhone", (String) ((JSONObject) jsonObject.get("mobilePhone")).get("customerMobilePhone"));
             }
+
+            this.productsRepository.save(Products.builder().id(id).status(1).build());
         } else {
             model.addAttribute("code", (String) jsonObject.get("code"));
             model.addAttribute("message", (String) jsonObject.get("message"));
