@@ -39,20 +39,6 @@
 
         }
 
-        #photo1 {
-
-            background-image: url(https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/27ec1068-d368-419e-9dd7-ddd9cae73fd9.jpeg);
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-
-        #photo2 {
-
-            background-image: url(assets/images/img/003.png);
-            background-repeat: no-repeat;
-            /*background-size : cover;*/
-
-        }
 
 
         figure {
@@ -143,6 +129,22 @@
 <div style="padding: 10px; position:absolute; left: 70px; top: 100px; border: #4d5154 dotted 1px; border-radius: 10px;">
     <p class="rate" style="font-size: small"> 현 시간 달러-원 환율: <span class="badge text-bg-dark" id="now-rate"
                                                                   style="vertical-align: center">1219.15</span></p>
+    <dl style="font-size: small">
+        <dt>기온</dt>
+        <dd class="temperature"></dd>
+        <dt>위치</dt>
+        <dd class="place"></dd>
+        <dt>설명</dt>
+        <dd class="description"></dd>
+        <img class="icon" />
+    </dl>
+    <button class="button btn btn-outline-secondary" type="button">현재 날씨는?</button>
+
+
+
+
+
+
 </div>
 
 
@@ -387,6 +389,11 @@
 
 
 </script>
+
+
+
+
+<script src="weather.js"></script>
 
 
 <!-- Bootstrap core JS-->
