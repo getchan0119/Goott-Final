@@ -42,12 +42,12 @@ public class ProductsController {
         return "redirect:/products";
     }
 
-//    @GetMapping("/products/modify/{id}")
-//    public String modify(Model model, Long id) {
-//        Products products = this.productsService.getProduct(id);
-//        model.addAttribute("productsEdit", products);
-//        return "products/products_edit";
-//    }
+    @GetMapping("/products/modify/{id}")
+    public String modify(Model model,@PathVariable("id") Long id) {
+        Products products = this.productsService.getProduct(id);
+        model.addAttribute("productsEdit", products);
+        return "products/products_edit";
+    }
 
     @PostMapping("/products/modify/{id}")
     public String modify(
