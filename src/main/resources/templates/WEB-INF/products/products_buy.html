@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" layout:decorate="~{include/layout}"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <body layout:fragment="content">
 <!-- Navigation-->
 <link href="/assets/css/stylesProductsBuy.css" rel="stylesheet" />
@@ -31,6 +31,11 @@
                     <h2 class="card-title" th:text="${products_buy.name}"></h2>
                     <p class="card-text" th:text="${products_buy.explanation}"></p>
 <!--                    <a class="btn btn-primary" href="#!">Read more →</a>-->
+
+                    <div sec:authorize="isAuthenticated()" >
+                        <a class="btn btn-primary mt-auto" th:href="@{|/products/modify/${products_buy.id}|}">수정</a>
+                        <a class="delete btn btn-danger mt-auto" href="javascript:void(0);" th:data-uri="@{|/products/delete/${products_buy.id}|}">삭제</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -42,8 +47,9 @@
                 <div class="card-body">
                     <div class="input-group">
                         <input aria-describedby="button-search" aria-label="Enter search term..." class="form-control"
-                               th:value="|${products_buy.price}원|" type="text" readonly/>
-                        <button class="btn btn-primary is-link" id="button-search" type="button" onclick="pay('카드', jsons.card);">즉시 구매하기</button>
+                               th:value="|${products_buy.price}원|" type="text" readonly disabled/>
+                        <button class="btn btn-primary is-link" type="button" sec:authorize="isAnonymous()" disabled>즉시 구매하기</button>
+                        <button class="btn btn-primary is-link" id="button-search" type="button" sec:authorize="isAuthenticated()" onclick="pay('카드', jsons.card);">즉시 구매하기</button>
                     </div>
                 </div>
             </div>
@@ -89,6 +95,17 @@
 <!--        </table>-->
 <!--    </div>-->
 <!--</div>-->
+<!--삭제용-->
+<script type='text/javascript'>
+    const delete_elements = document.getElementsByClassName("delete");
+    Array.from(delete_elements).forEach(function(element) {
+        element.addEventListener('click', function() {
+            if(confirm("정말로 삭제하시겠습니까?")) {
+                location.href = this.dataset.uri;
+            };
+        });
+    });
+</script>
 <script src="/assets/js/scriptsProductsBuy.js"></script>
 <!--토스 페이먼츠 스크립트-->
 <script th:inline="javascript">
