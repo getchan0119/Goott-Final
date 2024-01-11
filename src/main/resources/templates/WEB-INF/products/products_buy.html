@@ -32,7 +32,7 @@
                     <p class="card-text" th:text="${products_buy.explanation}"></p>
 <!--                    <a class="btn btn-primary" href="#!">Read more →</a>-->
 
-                    <div sec:authorize="isAuthenticated()">
+                    <div sec:authorize="isAuthenticated()" >
                         <a class="btn btn-primary mt-auto" th:href="@{|/products/modify/${products_buy.id}|}">수정</a>
                         <a class="delete btn btn-danger mt-auto" href="javascript:void(0);" th:data-uri="@{|/products/delete/${products_buy.id}|}">삭제</a>
                     </div>
