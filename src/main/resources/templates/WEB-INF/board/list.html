@@ -61,7 +61,7 @@
 <br>
     <div class="d-flex justify-content-center">
     <span th:each="pageNum : ${pageList}" th:inline="text">
-        <a th:href="@{'/list?page=' + ${pageNum}}"><button class="btn btn-outline-dark">[[${pageNum}]]</button></a>
+        <a th:href="@{'/list?page=' + ${pageNum}}">[[${pageNum}]]</a>
         &nbsp;
     </span>
         <br>
