@@ -1,100 +1,160 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Goott luxury</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
-        <!-- Bootstrap Icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
-        <!-- SimpleLightbox plugin CSS-->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="/assets/css/styles.css" rel="stylesheet" />
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Goott luxury</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico"/>
+    <!-- Bootstrap Icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic"
+          rel="stylesheet" type="text/css"/>
+    <!-- SimpleLightbox plugin CSS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet"/>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/assets/css/styles.css" rel="stylesheet"/>
 
 
-        <style>
+    <style>
 
 
-            body{
+        body {
 
-                height: 3940px;
-
-
-            }
-
-            span{
-                margin-bottom: 10%;
-                text-align: center;
-                opacity: 0;
-                transition: all 0.4s;
+            height: 3940px;
 
 
-            }
+        }
 
-            #photo1{
-
-                background-image: url(https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/27ec1068-d368-419e-9dd7-ddd9cae73fd9.jpeg);
-                background-repeat : no-repeat;
-                background-size : cover;
-            }
-
-            #photo2{
-
-                background-image: url(assets/images/img/003.png);
-                background-repeat : no-repeat;
-                /*background-size : cover;*/
-
-            }
+        span {
+            margin-bottom: 10%;
+            text-align: center;
+            opacity: 0;
+            transition: all 0.4s;
 
 
-            figure {transition: opacity 0.4s; position: relative; margin: 0; max-width: 100%}
-
-            figure img {width: 100%}
-
-            figure figcaption {color: #fff;bottom: 270px; opacity: 0;position: absolute; text-align: center; width: 100%;transition: all .3s ease;}
-
-            figure #gallery-img {opacity: 0.95;transition: all 0.3s ease 0s;overflow: hidden}
-
-            figure:hover #gallery-img {background-color: #000}
-
-            figure:hover img {transform: scale(1.1, 1.1);transition: all .3s ease;opacity: 0.5;cursor: url("https://hcode.b-cdn.net/wp-content/themes/h-code/assets/images/icon-zoom-white.png"), pointer}
-
-            figure:hover figcaption {opacity: 1;transition: all .3s ease; }
+        }
 
 
 
-        </style>
+        figure {
+            transition: opacity 0.4s;
+            position: relative;
+            margin: 0;
+            max-width: 100%
+        }
+
+        figure img {
+            width: 100%
+        }
+
+        figure figcaption {
+            color: #fff;
+            bottom: 270px;
+            opacity: 0;
+            position: absolute;
+            text-align: center;
+            width: 100%;
+            transition: all .3s ease;
+        }
+
+        figure #gallery-img {
+            opacity: 0.95;
+            transition: all 0.3s ease 0s;
+            overflow: hidden
+        }
+
+        figure:hover #gallery-img {
+            background-color: #000
+        }
+
+        figure:hover img {
+            transform: scale(1.1, 1.1);
+            transition: all .3s ease;
+            opacity: 0.5;
+            cursor: url("https://hcode.b-cdn.net/wp-content/themes/h-code/assets/images/icon-zoom-white.png"), pointer
+        }
+
+        figure:hover figcaption {
+            opacity: 1;
+            transition: all .3s ease;
+        }
 
 
+    </style>
 
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function () {
+            q1();
+        });
+
+        function q1() {
+            $.ajax({
+                type: "GET",
+                url: "http://spartacodingclub.shop/sparta_api/rate",
+                data: {},
+                success: function (response) {
+                    let now_rate = response['rate'];
+                    $('#now-rate').text(now_rate);
+                }
+            })
+        }
+
+    </script>
 
 
-    </head>
-    <body id="page-top">
+</head>
+<body id="page-top">
 
 <!--    카카오톡 채팅 버튼-->
 
-    <a id="chat-channel-button" href="http://pf.kakao.com/_xgBxcwG/chat" onclick="window.open(this.href, '_blank', 'width=400, height=700'); return false;">
-        <img id="ad2" src="/assets/images/img/채팅(채팅있음).png" alt="카카오톡 채팅버튼" width="250" heigt="120">
-    </a>
-    <a id="ad3" href="http://pf.kakao.com/_xgBxcwG/chat"  onclick="window.open(this.href, '_blank', 'width=400, height=700'); return false;"><b>채팅 상담</b></a>
+<a id="chat-channel-button" href="http://pf.kakao.com/_xgBxcwG/chat"
+   onclick="window.open(this.href, '_blank', 'width=400, height=700'); return false;">
+    <img id="ad2" src="/assets/images/img/채팅(채팅있음).png" alt="카카오톡 채팅버튼" width="250" heigt="120">
+</a>
+<a id="ad3" href="http://pf.kakao.com/_xgBxcwG/chat"
+   onclick="window.open(this.href, '_blank', 'width=400, height=700'); return false;"><b>채팅 상담</b></a>
 
 
-    <nav>
-    <div  class="align-items-center justify-content-center text-center" style="margin-top: 150px; margin-bottom: 100px">
-  <span >
+<div style="padding: 10px; position:absolute; left: 70px; top: 100px; border: #4d5154 dotted 1px; border-radius: 10px;">
+    <p class="rate" style="font-size: small"> 현 시간 달러-원 환율: <span class="badge text-bg-dark" id="now-rate"
+                                                                  style="vertical-align: center">1219.15</span></p>
+    <dl style="font-size: small">
+        <dt>기온</dt>
+        <dd class="temperature"></dd>
+        <dt>위치</dt>
+        <dd class="place"></dd>
+        <dt>설명</dt>
+        <dd class="description"></dd>
+        <img class="icon" />
+    </dl>
+    <button class="button btn btn-outline-secondary" type="button">현재 날씨는?</button>
+
+
+
+
+
+
+</div>
+
+
+<nav>
+    <div class="align-items-center justify-content-center text-center" style="margin-top: 150px; margin-bottom: 100px">
+  <span>
 <!--      <div id="typing-demo">-->
       <div id="typing" class="align-items-center justify-content-center text-center" style="margin: 0px auto">
        <img src="/assets/images/img/구트_noneinv.png"><br>
-<!--      </div>-->
+          <!--      </div>-->
           </div>
       <div id="typing2" style="margin: 0px auto">
       <h1 style="font-size: xxx-large; text-shadow:0px 0px 3px #009CFF;">
@@ -113,40 +173,38 @@
     </div>
 
 
-
 </nav>
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-            <div class="container px-4 px-lg-5">
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+    <div class="container px-4 px-lg-5">
 
-                <a class="navbar-brand" th:href="@{/}">GOOTT</a>
+        <a class="navbar-brand" th:href="@{/}">GOOTT</a>
 
-                    <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto my-2 my-lg-0">
-<!--                        <li class="nav-item"><a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/membersearch}">Member</a></li>-->
-                        <li class="nav-item"><a class="nav-link" th:href="@{/about}">About</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/list}">Services</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/products}">Products</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/contact}">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/signin}">Sign in</a></li>
-                        <li class="nav-item"><a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/signout}">Sign out</a></li>
-                        <li class="nav-item"><a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/signup}">Sign up</a></li>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto my-2 my-lg-0">
+                <li class="nav-item"><a class="nav-link" th:href="@{/membersearch}">Member</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/about}">About</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/list}">Services</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/products}">Products</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/contact}">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/signin}">Sign in</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/signup}">Sign up</a></li>
 
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
+            </ul>
+        </div>
+    </div>
+</nav>
 
 
-
-        <!-- Masthead-->
-        <header class="masthead1" style="width: 100%; height: 1280px; padding-right: 0%">
-            <div class="container px-4 px-lg-5 h-100" style="max-width: 1980px" >
-                <div class="row gx-4 gx-lg-5 align-items-center justify-content-center text-center">
-                    <div class="col-lg-8 align-self-end" style="margin-bottom: 5%">
+<!-- Masthead-->
+<header class="masthead1" style="width: 100%; height: 1280px; padding-right: 0%">
+    <div class="container px-4 px-lg-5 h-100" style="max-width: 1980px">
+        <div class="row gx-4 gx-lg-5 align-items-center justify-content-center text-center">
+            <div class="col-lg-8 align-self-end" style="margin-bottom: 5%">
                         <span>
 
 
@@ -154,7 +212,8 @@
 
                              <figure>
 
-                            <div  id="gallery-img" class="rounded mx-auto d-block"><img src="/assets/images/img/model2.png" style="width: auto; height: 1100px;" id="img1"></div>
+                            <div id="gallery-img" class="rounded mx-auto d-block"><img
+                                    src="/assets/images/img/model2.png" style="width: auto; height: 1100px;" id="img1"></div>
 
                             <figcaption>
 
@@ -166,35 +225,27 @@
                         </figure>
 
 
-
-
-
-<!--                        <img src="../assets/images/img/model2.png" class="rounded mx-auto d-block" alt="..." style="width: auto; height: 1100px;" id="img1">-->
-<!--                            <p>Goat Back 20,000 won</p>-->
+                            <!--                        <img src="../assets/images/img/model2.png" class="rounded mx-auto d-block" alt="..." style="width: auto; height: 1100px;" id="img1">-->
+                            <!--                            <p>Goat Back 20,000 won</p>-->
 
                         </span>
-                      
-                    </div>
 
-                    <div class="col-lg-8 align-self-baseline">
-
-
-
-
-
-
-
-
-                    </div>
-                </div>
             </div>
-        </header>
+
+            <div class="col-lg-8 align-self-baseline">
+
+
+            </div>
+        </div>
+    </div>
+</header>
 
 <!--사진2-->
-<div class="container text-center" style=" align-items: center; align-self: center; margin-left: auto; margin-right: auto;">
-    <div class="row" style=" width: 100%; height: 2200px"  >
+<div class="container text-center"
+     style=" align-items: center; align-self: center; margin-left: auto; margin-right: auto;">
+    <div class="row" style=" width: 100%; height: 2200px">
 
-        <div class="row-cols-xxl-auto" >
+        <div class="row-cols-xxl-auto">
 <span>
             <img src="/assets/images/img/0032.png" style="width: 860px; height:1100px; overflow: hidden;" id="img2">
 
@@ -207,8 +258,6 @@
                 </span>
 
         </div>
-
-
 
 
     </div>
@@ -231,24 +280,18 @@
         </div>
         <div class="col" style="vertical-align: center; margin-top: 450px; ">
             <br>
-            <span>
+
             <p style="vertical-align: center; text-align: center; align-self: center; font-size: xxx-large">구트 기프트 기빙 컬렉션</p><br>
-            <p style="vertical-align: center; text-align: center">크리에이티브 디렉터 사바토 데 사르노가 구상한 감성 충만하며 꾸밈없는 만남을 중점적으로 그려내는 구트의 홀리데이 캠페인.</p>
+            <p style="vertical-align: center; text-align: center">크리에이티브 디렉터 사바토 데 사르노가 구상한 감성 충만하며 꾸밈없는 만남을 중점적으로 그려내는 구트의 홀리데이 캠페인.</p><br>
             <p style="vertical-align: center; text-align: center">Goott luxury 에서 만나보세요.</p>
-            </span>
+
+
+
         </div>
     </div>
 
 
-
-
-
-
-
 </div>
-
-
-
 
 
 <div class="container px-4 px-lg-5 mt-5" style="background: #101214; border-radius: 0px 0px 0px 0px; max-width: 100%;">
@@ -267,14 +310,11 @@
         </tbody>
 
 
-
-
-
         <div style="color: #FFFFFF; float: left; text-align: left">
             <ul style="line-height: 25px; font-family: 'Century';font-weight: lighter; ">
                 <ol>Bank INFO : 국민 140-779-7956427 (주)구트 럭셔리</ol>
-                <ol>Company : GOOTT Luxury gmbh  | CEO : David Monaca & Reo Richard</ol>
-                <ol>CS CENTER : 1522-9535 // 영업일 기준 : 09:00 - 18:00 (주말 및 공휴일은 휴무) </ol>
+                <ol>Company : GOOTT Luxury gmbh | CEO : David Monaca & Reo Richard</ol>
+                <ol>CS CENTER : 1522-9535 // 영업일 기준 : 09:00 - 18:00 (주말 및 공휴일은 휴무)</ol>
                 <ol>ESCROW SERVICE : 고객님은 안전거래를 위해 현금 등으로 결제시 저희 쇼핑몰이 가입한 PG에스크로 구매안전서비스를 이용하실 수 있습니다.</ol>
             </ul>
 
@@ -290,27 +330,22 @@
             <br>
 
 
-
-
         </div>
     </div>
 </div>
 
 
-
 </div>
-
-
 
 
 <!--스무스 스크롤링 & 점멸 점등 효과-->
 <script>
 
 
-    let observer = new IntersectionObserver((e)=>{
-        e.forEach((box)=>{
+    let observer = new IntersectionObserver((e) => {
+        e.forEach((box) => {
 
-            if(box.isIntersecting){
+            if (box.isIntersecting) {
                 box.target.style.opacity = 1;
                 box.target.style.transform = 'rotate(0deg)';
 
@@ -329,7 +364,6 @@
     observer.observe(span[7])
 
 
-
 </script>
 
 
@@ -340,8 +374,6 @@
 
 </script>
 <script>
-
-
 
 
 </script>
@@ -361,16 +393,16 @@
 
 
 
+<script src="weather.js"></script>
 
 
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- SimpleLightbox plugin JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
+<!-- Core theme JS-->
 
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- SimpleLightbox plugin JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
-        <!-- Core theme JS-->
-
-        <script src="js/scripts.js"></script>
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    </body>
+<script type="text/javascript" th:src="@{/assets/js/scripts.js}"></script>
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+</body>
 </html>
