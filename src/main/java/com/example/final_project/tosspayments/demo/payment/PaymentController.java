@@ -92,8 +92,11 @@ public class PaymentController {
             } else if (((String) jsonObject.get("method")).equals("휴대폰")) {
                 model.addAttribute("customerMobilePhone", (String) ((JSONObject) jsonObject.get("mobilePhone")).get("customerMobilePhone"));
             }
-
-            this.productsRepository.save(Products.builder().id(id).status(1).build());
+            //수정 대신 삭제할 거임
+//            this.productsRepository.save(Products.builder().id(id).status(1).build());
+            
+            //삭제
+            this.productsRepository.delete(Products.builder().id(id).build());
         } else {
             model.addAttribute("code", (String) jsonObject.get("code"));
             model.addAttribute("message", (String) jsonObject.get("message"));

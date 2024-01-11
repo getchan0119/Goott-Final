@@ -2,23 +2,32 @@ package com.example.final_project.login.service;
 
 import com.example.final_project.login.Exception.MemberException;
 import com.example.final_project.login.dto.MemberCreateDto;
+import com.example.final_project.login.dto.SignIn;
 import com.example.final_project.login.entity.Member;
 import com.example.final_project.login.repository.MemberRepository;
+import com.example.final_project.login.type.UserRole;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
-import static com.example.final_project.login.Exception.MemberErrorCode.Duplicate_Email;
-import static com.example.final_project.login.Exception.MemberErrorCode.Password_Incorrect;
+import static com.example.final_project.login.Exception.MemberErrorCode.*;
 
 
 @Service    //비즈니스 로직 담당
 @RequiredArgsConstructor // 아래에 주석을 자동으로 만들어줌 (생성자)
-public class MemberService {
+public class MemberService implements UserDetailsService{
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
     private final EntityManager em;
@@ -37,7 +46,7 @@ public class MemberService {
                 .name(request.getName())
                 .password(encodedPassword)
                 .email(request.getEmail())
-                .memberType("user")
+//                .memberType("user")
                 .build();
 
         // 비밀번호 일치 여부 확인
@@ -65,5 +74,25 @@ public class MemberService {
     public boolean isEmailDuplicate(String email) {
         Optional<Member> existingMember = memberRepository.findByEmail(email);
         return existingMember.isPresent();
+    }
+
+
+    // 로그인 시 사용할 스프링 시큐리티
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Member member = memberRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
+
+        return new User(member.getEmail(), member.getPassword(), getAuthorities(member.getMemberType()));
+    }
+
+    // 권한 설정
+    private static List<GrantedAuthority> getAuthorities(String memberType) {
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        if ("admin".equals(memberType)) {
+            authorities.add(new SimpleGrantedAuthority(UserRole.ADMIN.getValue()));
+        } else {
+            authorities.add(new SimpleGrantedAuthority(UserRole.USER.getValue()));
+        }
+        return authorities;
     }
 }

@@ -11,15 +11,17 @@
 </head>
 <body>
 <form action="/post" method="post" align="center" style="margin-top: 7%">
-    <div style="border-right: solid burlywood 1px;  border-radius: 32px; height: 650px; margin: 0px auto; padding: 80px 140px 50px 130px; text-align: left;background-color: rgba(250,200,2,0.1)" class="w-25 align-middle">
-        <p>제  목</p>
-        <input type="text" name="title" class="form-control" placeholder="제목을 입력하세요."> <br>
-    <p>작성자</p>
-        <input type="text" name="writer" class="form-control" placeholder="작성자를 입력하세요."> <br>
-        <p>내  용</p>
-        <textarea name="content" class="form-control" placeholder="내용을 입력하세요." style="height: 150px;"></textarea><br>
+    <div style="border-right: solid rgba(10,10,20,0.2) 1px; box-shadow: rgba(10,10,20,0.2) 1px 1px 2px 2px;  border-radius: 32px; height: 650px; margin: 0px auto; padding: 80px 140px 50px 130px; text-align: left;background-color: rgba(200,200,200,0.3)" class="w-25 align-middle">
+        <p style="margin-left: -80px">제  목</p>
+        <input type="text" name="title" class="form-control" placeholder="제목을 입력하세요." style="width: 350px; margin-left: -88px"> <br>
+    <p style="margin-left: -80px">작성자</p>
+        <input type="text" name="writer" class="form-control" placeholder="작성자를 입력하세요." style="width: 350px; margin-left: -88px"> <br>
+        <p style="margin-left: -80px">내  용</p>
+        <textarea name="content" class="form-control" placeholder="내용을 입력하세요." style="height: 200px;width: 350px; margin-left: -88px"></textarea><br>
 
-    <input type="submit" value="등록" class="btn btn-outline-success">
+    <input type="submit" value="등록" class="btn btn-outline-secondary w-100">
+        <button th:onclick="|location.href='@{/}'|"    class="btn btn-dark w-100" style="margin-top: 10px;"> HOME </button>
+
 
     </div>
 </form>

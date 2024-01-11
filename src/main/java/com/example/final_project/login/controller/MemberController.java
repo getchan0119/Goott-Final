@@ -3,12 +3,14 @@ package com.example.final_project.login.controller;
 import com.example.final_project.login.Exception.MemberException;
 import com.example.final_project.login.dto.MemberCreateDto;
 import com.example.final_project.login.dto.MemberErrorResponse;
+import com.example.final_project.login.dto.SignIn;
 import com.example.final_project.login.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,6 +41,13 @@ public class MemberController {
     @GetMapping ("/signin")
     public String signinForm() {
         return "signin";
+    }
+
+    // 로그인 데이터 넣기
+    @PostMapping("/signin")
+    public String signin(@RequestBody SignIn.Request request)  {
+        memberService.loadUserByUsername(request.getEmail());
+        return "redirect:/";
     }
 
     // 이메일 중복 검사
