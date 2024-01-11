@@ -47,8 +47,10 @@
                 <div class="card-header">가격</div>
                 <div class="card-body">
                     <div class="input-group">
-                        <input aria-describedby="button-search" aria-label="Enter search term..." class="form-control"
-                               th:value="|${products_buy.price}원|" type="text" readonly disabled/>
+                        <th:block th:if="${products_buy.price != 0}">
+                            <input aria-describedby="button-search" aria-label="Enter search term..." class="form-control"
+                                   th:value="|${#numbers.formatInteger(products_buy.price, 3, 'COMMA')}원|" type="text" readonly disabled/>
+                        </th:block>
                         <button class="btn btn-primary is-link" type="button" sec:authorize="isAnonymous()" disabled>즉시 구매하기</button>
                         <button class="btn btn-primary is-link" id="button-search" type="button" sec:authorize="isAuthenticated()" onclick="pay('카드', jsons.card);">즉시 구매하기</button>
                     </div>
