@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" layout:decorate="~{include/layout}"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <body layout:fragment="content">
 <!-- Navigation-->
 <link href="/assets/css/stylesProductsBuy.css" rel="stylesheet" />
@@ -42,8 +42,9 @@
                 <div class="card-body">
                     <div class="input-group">
                         <input aria-describedby="button-search" aria-label="Enter search term..." class="form-control"
-                               th:value="|${products_buy.price}원|" type="text" readonly/>
-                        <button class="btn btn-primary is-link" id="button-search" type="button" onclick="pay('카드', jsons.card);">즉시 구매하기</button>
+                               th:value="|${products_buy.price}원|" type="text" readonly disabled/>
+                        <button class="btn btn-primary is-link" id="button-search" type="button" sec:authorize="isAnonymous()" onclick="pay('카드', jsons.card);" disabled>즉시 구매하기</button>
+                        <button class="btn btn-primary is-link" id="button-search" type="button" sec:authorize="isAuthenticated()" onclick="pay('카드', jsons.card);">즉시 구매하기</button>
                     </div>
                 </div>
             </div>
