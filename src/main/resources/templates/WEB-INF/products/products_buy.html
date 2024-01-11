@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" layout:decorate="~{include/layout}"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <body layout:fragment="content">
 <!-- Navigation-->
 <link href="/assets/css/stylesProductsBuy.css" rel="stylesheet" />
@@ -32,7 +33,7 @@
                     <p class="card-text" th:text="${products_buy.explanation}"></p>
 <!--                    <a class="btn btn-primary" href="#!">Read more →</a>-->
 
-                    <div sec:authorize="isAuthenticated()" >
+                    <div sec:authorize="hasAnyRole('ROLE_ADMIN')" >
                         <a class="btn btn-primary mt-auto" th:href="@{|/products/modify/${products_buy.id}|}">수정</a>
                         <a class="delete btn btn-danger mt-auto" href="javascript:void(0);" th:data-uri="@{|/products/delete/${products_buy.id}|}">삭제</a>
                     </div>
