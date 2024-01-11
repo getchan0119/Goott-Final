@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
@@ -186,13 +186,13 @@
 
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                <li class="nav-item"><a class="nav-link" th:href="@{/membersearch}">Member</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/about}">About</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/list}">Services</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/products}">Products</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/contact}">Contact</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/signin}">Sign in</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/signup}">Sign up</a></li>
+                <li class="nav-item"><a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/signin}">Sign in</a></li>
+                <li class="nav-item"><a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/signout}">Sign out</a></li>
+                <li class="nav-item"><a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/signup}">Sign up</a></li>
 
             </ul>
         </div>
