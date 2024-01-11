@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" layout:decorate="~{include/layout}"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <body layout:fragment="content"><!-- Navigation-->
 <link href="/assets/css/stylesProducts.css" rel="stylesheet" />
 <!-- Header-->
@@ -36,6 +37,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="d-flex justify-content-end" sec:authorize="hasAnyRole('ROLE_ADMIN')" >
+            <a class="btn btn-primary mt-auto" th:href="@{/products/create}">생성</a>
         </div>
         <!-- 페이징처리 시작 -->
         <div th:if="${!productsList.isEmpty()}">

@@ -3,7 +3,6 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
 <body layout:fragment="content"><!-- Navigation-->
 
-<!--TO-DO 수정 할 일 없어서 일단 만들고 방치중-->
 <h2>제품 등록</h2>
 <form method="post" th:action="@{|/products/modify/${productsEdit.id}|}" enctype="multipart/form-data">
     <input type="hidden" id="id" name="id" th:value="${productsEdit.id}"/>
