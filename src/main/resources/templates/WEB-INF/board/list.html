@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html layout:decorate="~{/include/layout}"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+<html layout:decorate="~{/include/layout}"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -66,8 +66,12 @@
     </span>
         <br>
 
+
+
+
+
     </div>
-        <a th:href="@{/post}"><button type="button" class="btn btn-dark" style="margin-left: 70%; margin-right:-40px;width: 200px;">글쓰기</button></a>
+        <a th:href="@{/post}"><button type="button" class="btn btn-dark" style="margin-left: 70%; margin-right:-40px;width: 200px;" sec:authorize="hasAnyRole('ROLE_ADMIN')">글쓰기</button></a>
 
     </div>
 </div>
