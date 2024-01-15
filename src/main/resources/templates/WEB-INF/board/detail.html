@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
@@ -20,13 +20,13 @@
 <div style="margin: auto; " >
     <a th:href="@{'/post/edit/' + ${boardDto.id}}">
 
-        <button class="btn btn-outline-secondary">수정</button>
+        <button class="btn btn-outline-secondary" sec:authorize="hasAnyRole('ROLE_ADMIN')">수정</button>
     </a>
 
     <form id="delete-form" th:action="@{'/post/' + ${boardDto.id}}" method="post" style="display: inline">
 
         <input type="hidden" name="_method" value="delete"/>
-        <button id="delete-btn" class="btn btn-outline-secondary">삭제</button>
+        <button id="delete-btn" class="btn btn-outline-secondary" sec:authorize="hasAnyRole('ROLE_ADMIN')">삭제</button>
     </form>
 </div>
 
